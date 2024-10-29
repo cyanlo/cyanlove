@@ -1,5 +1,21 @@
 <RCC>
     <qresource prefix="/plugins/cyanlove" >
+        <file>icon/accessibility-svgrepo-com.svg</file>
+        <file>icon/activity-svgrepo-com.svg</file>
+        <file>icon/address-card-svgrepo-com.svg</file>
+        <file>icon/alarm-clock-svgrepo-com.svg</file>
+        <file>icon/alien-svgrepo-com.svg</file>
+        <file>icon/align-bottom-svgrepo-com.svg</file>
+        <file>icon/align-center-horizontal-svgrepo-com.svg</file>
+        <file>icon/align-text-center-svgrepo-com.svg</file>
+        <file>icon/anchor-svgrepo-com.svg</file>
+        <file>icon/aperture-svgrepo-com.svg</file>
+        <file>icon/aquarius-svgrepo-com.svg</file>
+        <file>icon/baseball-svgrepo-com.svg</file>
+        <file>icon/bee-svgrepo-com.svg</file>
+        <file>icon/bicycle-svgrepo-com.svg</file>
+        <file>icon/bomb-svgrepo-com.svg</file>
+        <file>icon/butterfly-svgrepo-com.svg</file>
         <file>icon/icon1.svg</file>
         <file>icon/icon2.svg</file>
         <file>icon/icon3.svg</file>
@@ -8,5 +24,6 @@
         <file>icon/icon6.svg</file>
         <file>icon/icon7.svg</file>
         <file>icon/icon8.svg</file>
+
     </qresource>
 </RCC>

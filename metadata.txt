@@ -3,7 +3,7 @@
 # This file should be included when you package your plugin.# Mandatory items:
 
 [general]
-name=cyanlove
+name=申少军的工具箱
 qgisMinimumVersion=3.0
 description=申少军的工具箱
 version=0.1
@@ -12,8 +12,8 @@ email=shenshaojun@139.com
 
 about=申少军工具箱
 
-tracker=http://bugs
-repository=http://repo
+tracker=https://github.com/cyanlo/cyanloveQGIS
+repository=https://github.com/cyanlo/cyanloveQGIS
 # End of mandatory metadata
 
 # Recommended items:
@@ -25,7 +25,7 @@ hasProcessingProvider=no
 # Tags are comma separated with spaces allowed
 tags=python
 
-homepage=http://homepage
+homepage=https://github.com/cyanlo/cyanloveQGIS
 category=Plugins
 icon=icon.png
 # experimental flag

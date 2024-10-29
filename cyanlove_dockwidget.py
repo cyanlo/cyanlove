@@ -173,7 +173,7 @@ class cyanloveDockWidget(QtWidgets.QDockWidget, FORM_CLASS):
             self.label_2.setText(e)
 
     def GetNeightCell(self):
-        tbname1 = "[TB_4G_4G邻区表]"
+        tbname1 = "[TB_Neighbor]"
         tbname2 = "[TB_Cell]"
         cgistr = self.textEdit.toPlainText()
         split_cgistr = cgistr.split('-')

@@ -25,6 +25,7 @@ from qgis.PyQt.QtCore import QSettings, QTranslator, QCoreApplication, Qt
 from qgis.PyQt.QtGui import QIcon
 from qgis.PyQt.QtWidgets import QAction
 
+from .cyanlove_import_sqlite import cyanlove_import_sqlite
 from .cyanlove_customdraw import cyanlove_customdraw
 from .cyanlove_createpoint import cyanlove_createpoint
 from .cyanlove_import_geometry import cyanlove_import_geometry
@@ -66,6 +67,7 @@ class cyanlove:
         self.pluginIsActive4 = False
         self.pluginIsActive5 = False
         self.pluginIsActive6 = False
+        self.pluginIsActive7 = False
 
         self.dockwidget = None
         self.dockwidget2 = None  # 用于第2个窗口
@@ -73,6 +75,7 @@ class cyanlove:
         self.dockwidget4 = None  # 用于第4个窗口
         self.dockwidget5 = None  # 用于第4个窗口
         self.dockwidget6 = None  # 用于第4个窗口
+        self.dockwidget7 = None  # 用于第4个窗口
     def tr(self, message):
 
         return QCoreApplication.translate('cyanlove', message)
@@ -115,14 +118,19 @@ class cyanlove:
         return action
 
     def initGui(self):
-        icon_path1 = ':/plugins/cyanlove/icon/icon1.svg'
-        icon_path2 = ':/plugins/cyanlove/icon/icon2.svg'
-        icon_path3 = ':/plugins/cyanlove/icon/icon3.svg'
-        icon_path4 = ':/plugins/cyanlove/icon/icon4.svg'
-        icon_path5 = ':/plugins/cyanlove/icon/icon5.svg'
-        icon_path6 = ':/plugins/cyanlove/icon/icon6.svg'
-        icon_path7 = ':/plugins/cyanlove/icon/icon7.svg'
-        icon_path8 = ':/plugins/cyanlove/icon/icon8.svg'
+        icon_path1 = ':/plugins/cyanlove/icon/accessibility-svgrepo-com.svg'
+        icon_path2 = ':/plugins/cyanlove/icon/activity-svgrepo-com.svg'
+        icon_path3 = ':/plugins/cyanlove/icon/address-card-svgrepo-com.svg'
+        icon_path4 = ':/plugins/cyanlove/icon/alarm-clock-svgrepo-com.svg'
+        icon_path5 = ':/plugins/cyanlove/icon/alien-svgrepo-com.svg'
+        icon_path6 = ':/plugins/cyanlove/icon/align-bottom-svgrepo-com.svg'
+        icon_path7 = ':/plugins/cyanlove/icon/align-center-horizontal-svgrepo-com.svg'
+        icon_path8 = ':/plugins/cyanlove/icon/align-text-center-svgrepo-com.svg'
+        icon_path9 = ':/plugins/cyanlove/icon/anchor-svgrepo-com.svg'
+        icon_path10 = ':/plugins/cyanlove/icon/aperture-svgrepo-com.svg'
+        icon_path11 = ':/plugins/cyanlove/icon/aquarius-svgrepo-com.svg'
+        icon_path12 = ':/plugins/cyanlove/icon/baseball-svgrepo-com.svg'
+        icon_path13 = ':/plugins/cyanlove/icon/bee-svgrepo-com.svg'
         main_menu = self.add_action(
             icon_path1,
             text=self.tr(u'栅格分析'),
@@ -141,46 +149,51 @@ class cyanlove:
             parent=self.iface.mainWindow())
         self.add_action(
             icon_path4,
+            text=self.tr(u'导入表到数据库'),
+            callback=self.run_importsqlite,
+            parent=self.iface.mainWindow())
+        self.add_action(
+            icon_path5,
             text=self.tr(u'数据库配置'),
             callback=self.run2_setsqlite,
             parent=self.iface.mainWindow())
         self.add_action(
-            icon_path5,
+            icon_path6,
             text=self.tr(u'创建点图层'),
             callback=self.run5,
             parent=self.iface.mainWindow())
         self.add_action(
-            icon_path6,
+            icon_path7,
             text=self.tr(u'自定义/点/线/面图形绘制(CustomDraw)'),
             callback=self.run6,
             parent=self.iface.mainWindow())
         self.add_action(
-            icon_path7,
+            icon_path8,
             text=self.tr(u'绘制扇区图形(Sector)'),
             callback=self.run5,
             parent=self.iface.mainWindow())
         self.add_action(
-            icon_path8,
+            icon_path9,
             text=self.tr(u'缓冲区计算'),
             callback=self.run5,
             parent=self.iface.mainWindow())
         self.add_action(
-            icon_path4,
+            icon_path10,
             text=self.tr(u'包含关系计算'),
             callback=self.run5,
             parent=self.iface.mainWindow())
         self.add_action(
-            icon_path4,
+            icon_path11,
             text=self.tr(u'相交关系计算'),
             callback=self.run5,
             parent=self.iface.mainWindow())
         self.add_action(
-            icon_path4,
+            icon_path12,
             text=self.tr(u'图形合并计算'),
             callback=self.run5,
             parent=self.iface.mainWindow())
         self.add_action(
-            icon_path4,
+            icon_path13,
             text=self.tr(u'图形面积计算(Area)'),
             callback=self.run5,
             parent=self.iface.mainWindow())
@@ -209,6 +222,10 @@ class cyanlove:
     def onClosePlugin6(self):
         self.dockwidget6.closingPlugin.disconnect(self.onClosePlugin6)
         self.pluginIsActive6 = False
+
+    def onClosePlugin7(self):
+        self.dockwidget7.closingPlugin.disconnect(self.onClosePlugin7)
+        self.pluginIsActive7 = False
 
     def unload(self):
         for action in self.actions:
@@ -289,3 +306,16 @@ class cyanlove:
             self.dockwidget6.closingPlugin.connect(self.onClosePlugin6)
             self.iface.addDockWidget(Qt.RightDockWidgetArea, self.dockwidget6)
             self.dockwidget6.show()
+
+    def run_importsqlite(self):
+        if not self.pluginIsActive7:
+            self.pluginIsActive7 = True
+            if self.dockwidget7 is None:
+                self.dockwidget7 = cyanlove_import_sqlite()
+            self.dockwidget7.closingPlugin.connect(self.onClosePlugin7)
+            self.iface.addDockWidget(Qt.LeftDockWidgetArea, self.dockwidget7)
+            # 设置为浮动
+            self.dockwidget7.setFloating(True)
+            # 设置为 位置X ,Y ,宽度 ,高度
+            self.dockwidget7.setGeometry(400, 300, 700, 180)
+            self.dockwidget7.show()

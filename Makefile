@@ -40,7 +40,7 @@ SOURCES = \
 	__init__.py \
 	cyanlove.py cyanlove_dockwidget.py
 
-PLUGINNAME = cyanlove
+PLUGINNAME = 申少军工具箱
 
 PY_FILES = \
 	__init__.py \
