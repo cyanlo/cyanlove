@@ -1,0 +1,12 @@
+<RCC>
+    <qresource prefix="/plugins/cyanlove" >
+        <file>icon/icon1.svg</file>
+        <file>icon/icon2.svg</file>
+        <file>icon/icon3.svg</file>
+        <file>icon/icon4.svg</file>
+        <file>icon/icon5.svg</file>
+        <file>icon/icon6.svg</file>
+        <file>icon/icon7.svg</file>
+        <file>icon/icon8.svg</file>
+    </qresource>
+</RCC>
